@@ -9,9 +9,9 @@ using SimpleCommerce.Data;
 
 namespace SimpleCommerce.Migrations
 {
-    [DbContext(typeof(IdentityContext))]
-    [Migration("20200713172515_CreateIdentitySchema")]
-    partial class CreateIdentitySchema
+    [DbContext(typeof(ApplicationContext))]
+    [Migration("20200713200859_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,6 +46,15 @@ namespace SimpleCommerce.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "2301D884-221A-4E7D-B509-0113DCC043E1",
+                            ConcurrencyStamp = "906bb70e-503b-402f-b2fb-e115cbef7cfd",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -133,6 +142,13 @@ namespace SimpleCommerce.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "B22698B8-42A2-4115-9631-1C2D1E2AC5F7",
+                            RoleId = "2301D884-221A-4E7D-B509-0113DCC043E1"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -219,6 +235,24 @@ namespace SimpleCommerce.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "B22698B8-42A2-4115-9631-1C2D1E2AC5F7",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "7b3e9148-3c05-48ce-83a7-a0c26c0a927a",
+                            Email = "admin@simplecommerce.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@SIMPLECOMMERCE.COM",
+                            NormalizedUserName = "ADMIN@SIMPLECOMMERCE.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEF3J0oJTOSJbiyAXCbTeYYS+8xUJGWuNuCmkL/s8iVUsbm3aI4OSwk9+re0b7YBocA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "51a29ea0-69a1-4748-90b7-0c92e4f00b01",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@simplecommerce.com"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

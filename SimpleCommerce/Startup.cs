@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SimpleCommerce.Data;
 
 namespace SimpleCommerce
 {
@@ -56,6 +57,18 @@ namespace SimpleCommerce
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
+            EnsureDatabaseCreated(app);
+        }
+
+        private static void EnsureDatabaseCreated(IApplicationBuilder app)
+        {
+            var serviceScopeFactory = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
+            using (var serviceScope = serviceScopeFactory.CreateScope())
+            {
+                var dbContext = serviceScope.ServiceProvider.GetService<ApplicationContext>();
+                dbContext.Database.EnsureCreated();
+            }
         }
     }
 }

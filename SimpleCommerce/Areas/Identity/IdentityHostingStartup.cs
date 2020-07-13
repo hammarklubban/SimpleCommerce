@@ -13,12 +13,12 @@ namespace SimpleCommerce.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
-                services.AddDbContext<IdentityContext>(options =>
+                services.AddDbContext<ApplicationContext>(options =>
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("IdentityContextConnection")));
 
                 services.AddDefaultIdentity<SimpleCommerceUser>()
-                    .AddEntityFrameworkStores<IdentityContext>();
+                    .AddEntityFrameworkStores<ApplicationContext>();
             });
         }
     }

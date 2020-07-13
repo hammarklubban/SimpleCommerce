@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SimpleCommerce.Migrations
 {
-    public partial class CreateIdentitySchema : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -151,6 +151,21 @@ namespace SimpleCommerce.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "2301D884-221A-4E7D-B509-0113DCC043E1", "906bb70e-503b-402f-b2fb-e115cbef7cfd", "Administrator", "ADMINISTRATOR" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "B22698B8-42A2-4115-9631-1C2D1E2AC5F7", 0, "7b3e9148-3c05-48ce-83a7-a0c26c0a927a", "admin@simplecommerce.com", true, false, null, "ADMIN@SIMPLECOMMERCE.COM", "ADMIN@SIMPLECOMMERCE.COM", "AQAAAAEAACcQAAAAEF3J0oJTOSJbiyAXCbTeYYS+8xUJGWuNuCmkL/s8iVUsbm3aI4OSwk9+re0b7YBocA==", null, false, "51a29ea0-69a1-4748-90b7-0c92e4f00b01", false, "admin@simplecommerce.com" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "UserId", "RoleId" },
+                values: new object[] { "B22698B8-42A2-4115-9631-1C2D1E2AC5F7", "2301D884-221A-4E7D-B509-0113DCC043E1" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
