@@ -21,6 +21,8 @@ namespace SimpleCommerce.Data
             builder.ApplyConfiguration(new UserConfiguration());
             builder.ApplyConfiguration(new UsersWithRolesConfiguration());
         }
+
+        public DbSet<SimpleCommerce.Models.Product> Product { get; set; }
     }
 
     public class RoleConfiguration : IEntityTypeConfiguration<IdentityRole>
@@ -51,7 +53,7 @@ namespace SimpleCommerce.Data
             var user = new SimpleCommerceUser
             {
                 Id = adminUserId,
-                UserName = "admin@simplecommerce.com",
+                UserName = "Admin",
                 NormalizedUserName = "ADMIN@SIMPLECOMMERCE.COM",
                 Email = "admin@simplecommerce.com",
                 NormalizedEmail = "ADMIN@SIMPLECOMMERCE.COM",

@@ -10,7 +10,7 @@ using SimpleCommerce.Data;
 namespace SimpleCommerce.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20200713200859_InitialCreate")]
+    [Migration("20200713225416_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,7 +51,7 @@ namespace SimpleCommerce.Migrations
                         new
                         {
                             Id = "2301D884-221A-4E7D-B509-0113DCC043E1",
-                            ConcurrencyStamp = "906bb70e-503b-402f-b2fb-e115cbef7cfd",
+                            ConcurrencyStamp = "4e4008c2-1e68-42ec-b4ea-f2cfade4e68d",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -241,18 +241,46 @@ namespace SimpleCommerce.Migrations
                         {
                             Id = "B22698B8-42A2-4115-9631-1C2D1E2AC5F7",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7b3e9148-3c05-48ce-83a7-a0c26c0a927a",
+                            ConcurrencyStamp = "fe88dfee-a7f9-424a-967f-2d1770895933",
                             Email = "admin@simplecommerce.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@SIMPLECOMMERCE.COM",
                             NormalizedUserName = "ADMIN@SIMPLECOMMERCE.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEF3J0oJTOSJbiyAXCbTeYYS+8xUJGWuNuCmkL/s8iVUsbm3aI4OSwk9+re0b7YBocA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECLYUn+dBXcFFfGp34PqhOfFb9LtCP/DcZFcSwyVNwKqlYzLY/96S+Za5l/7dz17dg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "51a29ea0-69a1-4748-90b7-0c92e4f00b01",
+                            SecurityStamp = "2886183e-7a22-4d8c-b12e-af029bd008be",
                             TwoFactorEnabled = false,
-                            UserName = "admin@simplecommerce.com"
+                            UserName = "Admin"
                         });
+                });
+
+            modelBuilder.Entity("SimpleCommerce.Models.Product", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateAdded")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(1024)")
+                        .HasMaxLength(1024);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Product");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

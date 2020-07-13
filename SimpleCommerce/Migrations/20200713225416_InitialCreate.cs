@@ -47,6 +47,21 @@ namespace SimpleCommerce.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Product",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Name = table.Column<string>(maxLength: 256, nullable: false),
+                    Description = table.Column<string>(maxLength: 1024, nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    DateAdded = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Product", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -155,12 +170,12 @@ namespace SimpleCommerce.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "2301D884-221A-4E7D-B509-0113DCC043E1", "906bb70e-503b-402f-b2fb-e115cbef7cfd", "Administrator", "ADMINISTRATOR" });
+                values: new object[] { "2301D884-221A-4E7D-B509-0113DCC043E1", "4e4008c2-1e68-42ec-b4ea-f2cfade4e68d", "Administrator", "ADMINISTRATOR" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "B22698B8-42A2-4115-9631-1C2D1E2AC5F7", 0, "7b3e9148-3c05-48ce-83a7-a0c26c0a927a", "admin@simplecommerce.com", true, false, null, "ADMIN@SIMPLECOMMERCE.COM", "ADMIN@SIMPLECOMMERCE.COM", "AQAAAAEAACcQAAAAEF3J0oJTOSJbiyAXCbTeYYS+8xUJGWuNuCmkL/s8iVUsbm3aI4OSwk9+re0b7YBocA==", null, false, "51a29ea0-69a1-4748-90b7-0c92e4f00b01", false, "admin@simplecommerce.com" });
+                values: new object[] { "B22698B8-42A2-4115-9631-1C2D1E2AC5F7", 0, "fe88dfee-a7f9-424a-967f-2d1770895933", "admin@simplecommerce.com", true, false, null, "ADMIN@SIMPLECOMMERCE.COM", "ADMIN@SIMPLECOMMERCE.COM", "AQAAAAEAACcQAAAAECLYUn+dBXcFFfGp34PqhOfFb9LtCP/DcZFcSwyVNwKqlYzLY/96S+Za5l/7dz17dg==", null, false, "2886183e-7a22-4d8c-b12e-af029bd008be", false, "Admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
@@ -223,6 +238,9 @@ namespace SimpleCommerce.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Product");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
