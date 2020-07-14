@@ -1,0 +1,90 @@
+﻿@model IEnumerable<SimpleCommerce.Models.BasketItemModel>
+
+@{
+    ViewData["Title"] = "My Basket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>My Basket</h1>
+
+<table id="basketTable" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+@section Scripts {
+    <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var table = $('#basketTable').DataTable({
+                "columnDefs": [
+                    {
+                        "targets": -1,
+                        "data": null,
+                        "orderable": false,
+                        "defaultContent": "<button>Remove</button>",
+                    },
+                    { "name": "ProductId", "data": "productId", "targets": 0, "visible": false },
+                    { "name": "ProductName", "data": "productName", "targets": 1 },
+                    { "name": "ProductPrice", "data": "productPrice", "targets": 2 },
+                    { "name": "Quanitity", "data": "quanitity", "targets": 3 },
+                ],
+            });
+
+            $('#basketTable tbody').on('click', 'button', function () {
+                var rowData = table.row($(this).parents('tr')).data();
+
+                var basketUpdateModel = {
+                    productId: rowData.productId
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("Remove")',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(basketUpdateModel),
+                    success: function (result) {
+                        window.location.href = '@Url.Action("Index")';
+                    }
+                });
+            });
+        });
+    </script>
+}

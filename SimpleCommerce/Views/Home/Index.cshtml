@@ -35,7 +35,7 @@
     <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('#productsTable').DataTable({
+            var table = $('#productsTable').DataTable({
                 "proccessing": true,
                 "serverSide": true,
                 "ajax": {
@@ -47,10 +47,8 @@
                     {
                         "targets": -1,
                         "data": null,
-                        "render": function (data, type, row, meta) {
-                            return '<a href="@Url.Action("Add", "Basket")/' + row.id + '">Add to basket</a>';
-                        },
-                        "sortable": false
+                        "orderable": false,
+                        "defaultContent": "<button>Add</button>"
                     },
                     { "name": "Id", "data": "id", "targets": 0, "visible": false },
                     { "name": "Name", "data": "name", "targets": 1 },
@@ -59,6 +57,25 @@
                     { "name": "DateAdded", "data": "dateAdded", "targets": 4 }
                 ],
                 "order": [[0, "desc"]]
+            });
+
+            $('#productsTable tbody').on('click', 'button', function () {
+                var rowData = table.row($(this).parents('tr')).data();
+
+                var basketUpdateModel = {
+                    productId: rowData.id
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("Add", "Basket")',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(basketUpdateModel),
+                    success: function (result) {
+                        console.log('Data received: ');
+                        console.log(result);
+                    }
+                });
             });
         });
     </script>

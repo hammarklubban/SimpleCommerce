@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SimpleCommerce.Data;
 using SimpleCommerce.Data.Entities;
-using SimpleCommerce.DataTables;
+using SimpleCommerce.Models;
 
 namespace SimpleCommerce.Areas.Admin.Controllers
 {

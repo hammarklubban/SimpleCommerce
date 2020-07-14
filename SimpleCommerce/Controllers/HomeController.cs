@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using System.Linq.Dynamic.Core;
 using SimpleCommerce.Data;
 using SimpleCommerce.Data.Entities;
-using SimpleCommerce.DataTables;
 using SimpleCommerce.Models;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
