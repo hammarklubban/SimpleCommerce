@@ -23,7 +23,7 @@ This project is under development and currently the follwoing features are avail
   - On first startup the database will be created and seeded with user, role and product data.
   - You can configure other Sql Server data soure that LocalDB by altering the `SimpleCommerceConnection` string in `appsettings.json`.
 
-###To Start Running:
+### To Start Running:
 
 - Open SimpleCommerce.sln in Visual Studio 2019.
 - Press F5 or Debug -> Start Debugging
