@@ -50,19 +50,13 @@ namespace SimpleCommerce
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            var defaultCulture = new CultureInfo("en-US");
-            var localizationOptions = new RequestLocalizationOptions
-            {
-                DefaultRequestCulture = new RequestCulture(defaultCulture),
-                SupportedCultures = new List<CultureInfo> { defaultCulture },
-                SupportedUICultures = new List<CultureInfo> { defaultCulture }
-            };
-            app.UseRequestLocalization(localizationOptions);
+            app.SetDefaultCulture();
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
+                //Updates/Creates database with latest migration
                 app.UpdateDatabase();
             }
             else
