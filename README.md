@@ -31,5 +31,5 @@ This project is under development and currently the follwoing features are avail
   - Username: `admin@simplecommerce.com`
   - Password: `Supersecr3t`
 
-To Visit App:
+### To Visit App:
 - Open your favourite browser and go to https://localhost:5001
