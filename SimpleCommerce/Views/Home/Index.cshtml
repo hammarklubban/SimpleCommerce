@@ -31,6 +31,7 @@
 </table>
 <link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 @section Scripts {
+    <script src="~/lib/toastr.js/toastr.min.js"></script>
     <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
     <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
     <script>
@@ -72,8 +73,7 @@
                     contentType: "application/json; charset=utf-8",
                     data: JSON.stringify(basketUpdateModel),
                     success: function (result) {
-                        console.log('Data received: ');
-                        console.log(result);
+                        toastr.success('Product added to basket', 'SimpleCommerce', { timeOut: 3000 })
                     }
                 });
             });
