@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SimpleCommerce.Models
+namespace SimpleCommerce.Data.Entities
 {
     public class Product
     {

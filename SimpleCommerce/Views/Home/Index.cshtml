@@ -1,9 +1,65 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<SimpleCommerce.Data.Entities.Product>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    <div class="text-center">
-        <h1 class="display-4">Welcome</h1>
-        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-        @System.Globalization.CultureInfo.CurrentUICulture
-    </div>
+<h1>Products</h1>
+
+<table id="productsTable" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateAdded)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+</table>
+<link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+@section Scripts {
+    <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#productsTable').DataTable({
+                "proccessing": true,
+                "serverSide": true,
+                "ajax": {
+                    url: "@Url.Action("Filter")",
+                    type: 'POST',
+                    headers: { 'RequestVerificationToken': $('@Html.AntiForgeryToken()').val() }
+                },
+                "columnDefs": [
+                    {
+                        "targets": -1,
+                        "data": null,
+                        "render": function (data, type, row, meta) {
+                            return '<a href="@Url.Action("Add", "Basket")/' + row.id + '">Add to basket</a>';
+                        },
+                        "sortable": false
+                    },
+                    { "name": "Id", "data": "id", "targets": 0, "visible": false },
+                    { "name": "Name", "data": "name", "targets": 1 },
+                    { "name": "Description", "data": "description", "targets": 2 },
+                    { "name": "Price", "data": "price", "targets": 3 },
+                    { "name": "DateAdded", "data": "dateAdded", "targets": 4 }
+                ],
+                "order": [[0, "desc"]]
+            });
+        });
+    </script>
+}

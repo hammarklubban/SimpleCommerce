@@ -21,20 +21,18 @@ namespace SimpleCommerce
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
             services.AddRazorPages();
 
-            services.AddDbContext<ApplicationContext>(options => 
+            services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("SimpleCommerceConnection")));
 
             services.AddDefaultIdentity<SimpleCommerceUser>()
                     .AddEntityFrameworkStores<ApplicationContext>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             var defaultCulture = new CultureInfo("en-US");
@@ -78,7 +76,7 @@ namespace SimpleCommerce
 
                 endpoints.MapRazorPages();
             });
-                       
+
         }
     }
 }
