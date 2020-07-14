@@ -46,8 +46,8 @@ namespace SimpleCommerce.Areas.Admin.Controllers
 
             var recordsFiltered = productsQuery.Count();
 
-            var sortColumnName = dataTablesRequest?.Columns?.ElementAt(dataTablesRequest?.Order?.ElementAt(0)?.Column ?? 0)?.Name;
-            var sortDirection = dataTablesRequest?.Order?.ElementAt(0).Dir.ToLower();
+            var sortColumnName = dataTablesRequest.Columns.ElementAt(dataTablesRequest.Order.ElementAt(0).Column).Name;
+            var sortDirection = dataTablesRequest.Order.ElementAt(0).Dir.ToLower();
 
             productsQuery = productsQuery.OrderBy($"{sortColumnName} {sortDirection}");
 
