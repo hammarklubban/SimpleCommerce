@@ -27,7 +27,7 @@ This project is under development and currently the follwoing features are avail
 
 - Open SimpleCommerce.sln in Visual Studio 2019.
 - Press F5 or Debug -> Start Debugging
-- The default user for loging to the Admin section is:
+- The default user for logging in to the Admin section is:
   - Username: `admin@simplecommerce.com`
   - Password: `Supersecr3t`
 - Happy debugging! :-)
