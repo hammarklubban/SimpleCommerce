@@ -20,7 +20,7 @@ This project is under development and currently the follwoing features are avail
 - You will need Visual Studio 2019 on your machine.  
 - The application is using SQL Server Express LocalDB instance MSSQLLocalDB. Please make sure it is setup.
   - The default database name is `SimpleCommerce`
-  - On first startup the database will be created and seeded with user, role and product data.
+  - On startup the database will be created and seeded with user, role and product data.
   - You can configure other Sql Server data soure that LocalDB by altering the `SimpleCommerceConnection` string in `appsettings.json`.
 
 ### To Start Running:
