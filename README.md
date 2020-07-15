@@ -30,6 +30,7 @@ This project is under development and currently the follwoing features are avail
 - The default user for loging to the Admin section is:
   - Username: `admin@simplecommerce.com`
   - Password: `Supersecr3t`
+- Happy debugging! :-)
 
 ### To Visit App:
 - Open your favourite browser and go to https://localhost:5001
